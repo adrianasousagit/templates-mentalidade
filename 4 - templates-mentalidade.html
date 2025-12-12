@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates para feed Mentalidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Verdes escuros */
+            --green-deep: #0a1f1a;
+            --green-dark: #0f2f27;
+            --green-forest: #1a4d3e;
+            
+            /* Verdes médios */
+            --green-primary: #22c55e;
+            --green-emerald: #10b981;
+            --green-teal: #14b8a6;
+            
+            /* Verdes claros */
+            --green-mint: #4ade80;
+            --green-light: #86efac;
+            --green-pale: #bbf7d0;
+            
+            /* Glows */
+            --green-glow: rgba(34, 197, 94, 0.3);
+            --emerald-glow: rgba(16, 185, 129, 0.25);
+            --mint-glow: rgba(74, 222, 128, 0.2);
+            
+            /* Gradientes */
+            --gradient-main: linear-gradient(135deg, var(--green-emerald) 0%, var(--green-primary) 50%, var(--green-mint) 100%);
+            --gradient-subtle: linear-gradient(135deg, var(--green-dark) 0%, var(--green-forest) 100%);
+            
+            /* Textos */
+            --text-white: #f0fdf4;
+            --text-gray: #a7c4b8;
+            --text-muted: #6b9080;
+            
+            /* Outros */
+            --border-subtle: rgba(34, 197, 94, 0.1);
+            --border-glow: rgba(34, 197, 94, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--green-deep);
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--emerald-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, var(--green-glow) 0%, transparent 50%);
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 25s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Leaves Effect */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--green-primary);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.1;
+            animation: floatLeaf 15s ease-in-out infinite;
+        }
+
+        .leaf:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; width: 25px; height: 25px; }
+        .leaf:nth-child(2) { left: 20%; top: 60%; animation-delay: -3s; width: 15px; height: 15px; }
+        .leaf:nth-child(3) { left: 70%; top: 30%; animation-delay: -6s; width: 30px; height: 30px; }
+        .leaf:nth-child(4) { left: 80%; top: 70%; animation-delay: -9s; width: 18px; height: 18px; }
+        .leaf:nth-child(5) { left: 50%; top: 10%; animation-delay: -12s; width: 22px; height: 22px; }
+
+        @keyframes floatLeaf {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            25% { transform: translate(20px, -30px) rotate(45deg); opacity: 0.15; }
+            50% { transform: translate(-10px, -60px) rotate(90deg); opacity: 0.1; }
+            75% { transform: translate(30px, -30px) rotate(135deg); opacity: 0.15; }
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        /* Title */
+        .title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .title .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Video */
+        .video-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.15s backwards;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--green-dark);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: var(--gradient-main);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-subtle);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .play-btn {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px var(--green-glow);
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid var(--green-mint);
+            opacity: 0.4;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 1px solid var(--green-primary);
+            opacity: 0.2;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite 0.5s;
+        }
+
+        @keyframes ping {
+            75%, 100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        .video-placeholder:hover .play-btn {
+            transform: scale(1.1);
+            box-shadow: 0 15px 60px var(--green-glow);
+        }
+
+        .play-btn svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--green-deep);
+            margin-left: 4px;
+        }
+
+        .video-placeholder span {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 56px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            background: var(--gradient-main);
+            color: var(--green-deep);
+            box-shadow: 
+                0 10px 40px var(--green-glow),
+                0 0 0 1px var(--green-primary);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 50px var(--green-glow),
+                0 0 0 1px var(--green-mint);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 24px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.45s backwards;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--green-primary);
+            transition: width 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--green-mint);
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 26, 0.92);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--green-dark);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            max-width: 550px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: modalIn 0.3s ease-out;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--green-glow);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-gray);
+        }
+
+        .modal h2 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .modal h3 {
+            font-size: 1rem;
+            margin: 20px 0 10px;
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 40px 20px;
+            }
+
+            .btn {
+                padding: 18px 44px;
+                font-size: 1.05rem;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .play-btn {
+                width: 72px;
+                height: 72px;
+            }
+
+            .play-btn svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .modal {
+                padding: 28px 20px;
+            }
+
+            .leaf {
+                opacity: 0.05;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-pattern"></div>
+    <div class="bg-grid"></div>
+    <div class="floating-elements">
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <h1 class="title">
+            Templates para feed<br>
+            <span class="highlight">Mentalidade</span>
+        </h1>
+
+        <div class="video-wrapper">
+            <div class="video-container">
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Clique para assistir</span>
+                </div>
+                <!-- Substitua pelo seu vídeo:
+                <iframe src="SEU_VIDEO_URL" allowfullscreen></iframe>
+                -->
+            </div>
+        </div>
+
+        <a href="#" class="btn">
+            Quero Agora
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#" id="privacyLink">Política de Privacidade</a>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+            <h2>Política de Privacidade</h2>
+            <p>Esta política descreve como coletamos, usamos e protegemos suas informações pessoais ao utilizar nossos templates.</p>
+            
+            <h3>Informações Coletadas</h3>
+            <p>Podemos coletar informações como nome, e-mail e dados de uso para melhorar sua experiência.</p>
+            
+            <h3>Uso das Informações</h3>
+            <p>Suas informações são utilizadas para fornecer nossos serviços, enviar comunicações relevantes e garantir a segurança da plataforma.</p>
+            
+            <h3>Proteção de Dados</h3>
+            <p>Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado.</p>
+            
+            <h3>Seus Direitos</h3>
+            <p>Você pode acessar, corrigir ou excluir suas informações a qualquer momento, conforme a LGPD.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Privacy Modal
+        const privacyLink = document.getElementById('privacyLink');
+        const privacyModal = document.getElementById('privacyModal');
+        const modalClose = document.getElementById('modalClose');
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        modalClose.addEventListener('click', () => {
+            privacyModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        privacyModal.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                privacyModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && privacyModal.classList.contains('active')) {
+                privacyModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Video Placeholder
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        videoPlaceholder.addEventListener('click', () => {
+            alert('Adicione aqui a URL do seu vídeo!');
+        });
+    </script>
+</body>
+</html>
